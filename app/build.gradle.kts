@@ -78,5 +78,4 @@ dependencies {
     //CAMARA
     implementation("io.coil-kt:coil-compose:2.6.0")
     implementation("com.google.firebase:firebase-storage-ktx")
-    implementation("io.coil-kt:coil-compose:2.6.0")
 }

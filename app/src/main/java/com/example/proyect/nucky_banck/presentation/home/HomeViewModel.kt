@@ -46,8 +46,9 @@ class HomeViewModel(
                 _uiState.update { state ->
                     state.copy(
                         fullName = user.fullName,
-                        cedula   = user.cedula,
-                        saldo    = user.saldo
+                        cedula = user.cedula,
+                        saldo = user.saldo,
+                        photoUrl = user.photoUrl
                     )
                 }
             }

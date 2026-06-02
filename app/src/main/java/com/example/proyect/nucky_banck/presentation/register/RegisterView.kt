@@ -5,10 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Badge
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -132,6 +128,7 @@ fun RegisterView(
                         value = uiState.fullName,
                         onValueChange = viewModel::onFullNameChange,
                         label = stringResource(R.string.label_full_name),
+
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -142,6 +139,8 @@ fun RegisterView(
                         onValueChange = viewModel::onCedulaChange,
                         label = stringResource(R.string.label_document_number),
                         keyboardType = KeyboardType.Number,
+                        errorMessage = uiState.cedulaError
+
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -151,7 +150,8 @@ fun RegisterView(
                         value = uiState.password,
                         onValueChange = viewModel::onPasswordChange,
                         label = stringResource(R.string.label_password),
-                        isPassword = true
+                        isPassword = true,
+                        errorMessage = uiState.passwordError
 
                     )
 
@@ -162,7 +162,7 @@ fun RegisterView(
                         value = uiState.confirmPassword,
                         onValueChange = { viewModel.onConfirmPasswordChange(it) },
                         label = stringResource(R.string.label_confirm_password),
-                        isPassword = true
+                        isPassword = true,
 
                     )
 

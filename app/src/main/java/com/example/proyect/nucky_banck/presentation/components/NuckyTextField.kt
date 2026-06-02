@@ -30,6 +30,7 @@ fun NuckyTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
+    modifier: Modifier = Modifier,
     leadingIcon: @Composable (() -> Unit)? = null,
     errorMessage: String? = null,
     isPassword: Boolean = false,
@@ -93,7 +94,6 @@ fun NuckyTextField(
         supportingText = {
 
             if (errorMessage != null) {
-
                 Text(
                     text = errorMessage,
                     color = ErrorRed,

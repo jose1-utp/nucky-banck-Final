@@ -31,18 +31,15 @@ class LoginViewModel(private val loginUseCase: LoginUseCase = LoginUseCase(Fireb
         onSuccess: () -> Unit,
         onError: (Int) -> Unit
     ) {
-
-        loginUseCase(
-            _uiState.value.cedula,
-            _uiState.value.password
+        _uiState.update {
+            it.copy(isLoading = true)
+        }
+        loginUseCase(_uiState.value.cedula, _uiState.value.password
         ) { success, message ->
 
             if (success) {
-
                 onSuccess()
-
             } else {
-
                 onError(message)
             }
         }
