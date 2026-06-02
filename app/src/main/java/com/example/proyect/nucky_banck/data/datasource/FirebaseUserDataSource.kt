@@ -27,4 +27,8 @@ class FirebaseUserDataSource {
     fun getMovimientos(cedula: String): Task<DataSnapshot> {
         return database.child(cedula).child("movimientos").get()
     }
+
+    fun savePhoto(cedula: String, photoUrl: String): Task<Void> {
+        return database.child(cedula).child("photoUrl").setValue(photoUrl)
+    }
 }

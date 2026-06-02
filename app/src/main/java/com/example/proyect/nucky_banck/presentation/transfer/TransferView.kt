@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.proyect.nucky_banck.R
 import com.example.proyect.nucky_banck.presentation.components.NuckyTextField
 import com.example.proyect.nucky_banck.presentation.components.ShowLoadingAlertDialog
 import com.example.proyect.nucky_banck.presentation.components.ShowMessageAlertDialog
@@ -61,27 +63,27 @@ fun TransferView(
                 }
             },
             dialogTitle = dialogTitle,
-            dialogText  = dialogMessage
+            dialogText = dialogMessage
         )
     }
 
     // Cuando la transferencia es exitosa
     LaunchedEffect(uiState.transferSuccess) {
         if (uiState.transferSuccess) {
-            dialogTitle   = "Transferencia exitosa"
+            dialogTitle = "Transferencia exitosa"
             dialogMessage = uiState.successMessage
-            esExito       = true
-            showDialog    = true
+            esExito = true
+            showDialog = true
         }
     }
 
     // Cuando hay un error general
     LaunchedEffect(uiState.generalError) {
         uiState.generalError?.let {
-            dialogTitle   = "Error en la transferencia"
+            dialogTitle = "Error en la transferencia"
             dialogMessage = it
-            esExito       = false
-            showDialog    = true
+            esExito = false
+            showDialog = true
         }
     }
 
@@ -110,8 +112,8 @@ fun TransferView(
             ) {
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(
-                        imageVector   = Icons.Default.ArrowBack,
-                        contentDescription = "Volver",
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = stringResource(R.string.btn_exit),
                         tint = White
                     )
                 }
@@ -120,14 +122,14 @@ fun TransferView(
 
                 Column {
                     Text(
-                        text       = "Transferencia",
-                        color      = White,
-                        fontSize   = 22.sp,
+                        text = stringResource(R.string.transfer_title),
+                        color = White,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text     = "Envía dinero a otro usuario",
-                        color    = White.copy(alpha = 0.7f),
+                        text = stringResource(R.string.text_trans_description),
+                        color = White.copy(alpha = 0.7f),
                         fontSize = 14.sp
                     )
                 }
@@ -148,9 +150,9 @@ fun TransferView(
                 ) {
 
                     Text(
-                        text       = "Datos de la transferencia",
-                        color      = TextDark,
-                        fontSize   = 20.sp,
+                        text = stringResource(R.string.text_trans_data),
+                        color = TextDark,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold
                     )
 
@@ -158,65 +160,51 @@ fun TransferView(
 
                     // Campo: cédula del destinatario
                     NuckyTextField(
-                        value         = uiState.cedulaDestino,
+                        value = uiState.cedulaDestino,
                         onValueChange = viewModel::onCedulaDestinoChange,
-                        label         = "Cédula del destinatario",
-                        keyboardType  = KeyboardType.Number,
-                        leadingIcon   = {
-                            Icon(
-                                Icons.Default.Badge,
-                                contentDescription = null,
-                                tint = NavyBlue
-                            )
-                        },
-                        errorMessage  = uiState.cedulaDestinoError
+                        label = stringResource(com.example.proyect.nucky_banck.R.string.label_cedula_destino),
+                        keyboardType = KeyboardType.Number,
+
+                        errorMessage = uiState.cedulaDestinoError
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Campo: monto a transferir
                     NuckyTextField(
-                        value         = uiState.monto,
+                        value = uiState.monto,
                         onValueChange = viewModel::onMontoChange,
-                        label         = "Monto a transferir",
-                        keyboardType  = KeyboardType.Decimal,
-                        leadingIcon   = {
-                            Icon(
-                                Icons.Default.AttachMoney,
-                                contentDescription = null,
-                                tint = NavyBlue
-                            )
-                        },
-                        errorMessage  = uiState.montoError
+                        label = stringResource(com.example.proyect.nucky_banck.R.string.label_monto),
+                        keyboardType = KeyboardType.Decimal,
+
+                        errorMessage = uiState.montoError
                     )
 
                     Spacer(modifier = Modifier.height(32.dp))
 
                     // Botón Transferir
                     Button(
-                        onClick = {
-                            viewModel.onTransferirClicked(cedula)
-                        },
-                        enabled  = !uiState.isLoading,
+                        onClick = { viewModel.onTransferirClicked(cedula) },
+                        enabled = !uiState.isLoading,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(52.dp),
-                        shape  = RoundedCornerShape(12.dp),
+                        shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor         = Emerald,
+                            containerColor = Emerald,
                             disabledContainerColor = Emerald.copy(alpha = 0.5f)
                         )
                     ) {
                         if (uiState.isLoading) {
                             CircularProgressIndicator(
-                                color       = White,
-                                modifier    = Modifier.size(22.dp),
+                                color = White,
+                                modifier = Modifier.size(22.dp),
                                 strokeWidth = 2.dp
                             )
                         } else {
                             Text(
-                                text       = "Transferir",
-                                fontSize   = 16.sp,
+                                text = stringResource(R.string.btn_transfer),
+                                fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
@@ -226,11 +214,11 @@ fun TransferView(
 
                     // Botón cancelar / volver
                     TextButton(
-                        onClick  = { navController.popBackStack() },
+                        onClick = { navController.popBackStack() },
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text  = "Cancelar",
+                            text = stringResource(R.string.btn_cancel),
                             color = TextGray
                         )
                     }

@@ -21,4 +21,6 @@ data class User(
     val cedulaError: String? = null,
     val passwordError: String? = null,
     val generalError: String? = null,
+    val photoUrl: String = ""
+
 )

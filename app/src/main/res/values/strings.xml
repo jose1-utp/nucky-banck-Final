@@ -16,7 +16,12 @@
     <string name="btn_login">Iniciar Sesión</string>
     <string name="text_no_account">¿No tienes cuenta?</string>
     <string name="error_login_failed">Cédula o contraseña incorrecta</string>
+    <string name="login_title">Nucky Bank</string>
+    <string name="app_phrase">Tu dinero, seguro y disponible</string>
 
+    <string name="label_login">Iniciar Sesion</string>
+    <string name="btn_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="text_register">Regístrate</string>
     <!-- REGISTER -->
     <string name="register_title">Crear Cuenta</string>
     <string name="label_full_name">Nombre Completo</string>
@@ -28,10 +33,41 @@
     <string name="register_success_message">Cuenta creada correctamente</string>
     <string name="error_register_failed">Hubo un error al crear la cuenta</string>
     <string name="error_user_exists">Ya existe el usuario con esa cédula</string>
+    <string name="register_title_phrase">Unete a Nucky Bank</string>
+    <string name="register_title_card">Registro</string>
+    <string name="text_login_here">Inicia sesión</string>
+    <string name="register_loading_title">Registrando</string>
+    <string name="error_passwords_match">Las contraseñas no coinciden</string>
+    <!-- HOME -->
+    <string name="text_welcome_again">Bienvenido de Nuevo</string>
+    <string name="text_saldo">Saldo Disponible</string>
+    <string name="title_account">Cuenta de Ahorras</string>
+    <string name="title_actions">Acciones Rapidas</string>
+    <string name="btn_history">Movimientos</string>
+    <string name="text_moves">Ultimos movimientos</string>
+    <string name="text_no_moves">Sin movimientos recientes</string>
+    <string name="btn_recargar">Recargar</string>
+    <string name="text_question_out">¿Desea cerrar sesión?</string>
+    <string name="text_question_out_cond">Si sales de Nucky Bank, tendrás que ingresar tus datos nuevamente la próxima vez.</string>
+
+
+    <string name="btn_exit">Salir</string>
+
 
     <!-- TRANSFER -->
     <string name="transfer_title">Transferencia</string>
     <string name="label_cedula_destino">Cédula del destinatario</string>
     <string name="label_monto">Monto a transferir</string>
     <string name="btn_transfer">Transferir</string>
+    <string name="text_trans_succ">Transferencia Exitosa</string>
+    <string name="btn_back">Volver</string>
+    <string name="text_trans_description">Envía dinero a otro usuario</string>
+    <string name="text_trans_data">Datos de la transferencia</string>
+
+    <string name="error_tranfer">El nombre no puede estar vacío</string>
+
+    <string name="error_nombre_vacio">El nombre no puede estar vacío</string>
+    <string name="error_cedula_invalida">La cédula debe tener entre 8 y 10 dígitos</string>
+    <string name="error_password_invalida">La contraseña debe tener mínimo 6 caracteres entre ellos especiales y mayusculas</string>
+    <string name="error_passwords_no_coinciden">Las contraseñas no coinciden</string>
 </resources>

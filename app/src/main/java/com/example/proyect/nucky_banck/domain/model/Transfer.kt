@@ -1,10 +1,6 @@
-package com.example.proyect.nucky_banck.presentation.transfer
+package com.example.proyect.nucky_banck.domain.model
 
-// Modelo de estado de la pantalla de transferencia.
-// Guarda lo que el usuario escribe y el resultado de la operación.
-data class TransferModel(
-
-    // Lo que escribe el usuario
+data class Transfer(
     val cedulaDestino: String = "",
     val monto: String = "",
 

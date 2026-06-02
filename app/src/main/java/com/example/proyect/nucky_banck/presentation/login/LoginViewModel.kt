@@ -9,8 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-class LoginViewModel(
-    private val loginUseCase: LoginUseCase = LoginUseCase(FirebaseAuthRepositoryImpl())
+class LoginViewModel(private val loginUseCase: LoginUseCase = LoginUseCase(FirebaseAuthRepositoryImpl())
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(User())

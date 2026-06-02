@@ -39,14 +39,14 @@ fun RegisterView(
     navController: NavController
 ) {
 
-    val uiState     by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val scrollState = rememberScrollState()
 
     // Control del diálogo de resultado
-    var showDialog   by remember { mutableStateOf(false) }
-    var message      by remember { mutableStateOf(0) }
+    var showDialog by remember { mutableStateOf(false) }
+    var message by remember { mutableStateOf(0) }
     // Saber si el diálogo es de éxito para regresar al login
-    var esExito      by remember { mutableStateOf(false) }
+    var esExito by remember { mutableStateOf(false) }
 
     // Muestra loading mientras Firebase guarda el usuario
     if (uiState.isLoading) {
@@ -64,18 +64,14 @@ fun RegisterView(
                 }
             },
             dialogTitle = if (esExito) stringResource(R.string.dialog_success_title) else stringResource(R.string.dialog_error_title),
-            dialogText  = stringResource(message)
+            dialogText = stringResource(message)
         )
     }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    listOf(NavyBlue, DeepBlue)
-                )
-            )
+            .background(Brush.verticalGradient(listOf(NavyBlue, DeepBlue)))
     ) {
 
         Column(
@@ -94,17 +90,17 @@ fun RegisterView(
             ) {
 
                 Text(
-                    text       = stringResource(R.string.register_title),
-                    color      = White,
-                    fontSize   = 34.sp,
+                    text = stringResource(R.string.register_title),
+                    color = White,
+                    fontSize = 34.sp,
                     fontWeight = FontWeight.Bold
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text     = "Únete a Nucky Bank",
-                    color    = White.copy(alpha = 0.8f),
+                    text = stringResource(R.string.register_title_phrase),
+                    color = White.copy(alpha = 0.8f),
                     fontSize = 15.sp
                 )
             }
@@ -112,8 +108,8 @@ fun RegisterView(
             // CARD con formulario de registro
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                shape    = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
-                colors   = CardDefaults.cardColors(containerColor = White)
+                shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
+                colors = CardDefaults.cardColors(containerColor = White)
             ) {
 
                 Column(
@@ -123,9 +119,9 @@ fun RegisterView(
                 ) {
 
                     Text(
-                        text       = "Registro",
-                        color      = TextDark,
-                        fontSize   = 24.sp,
+                        text = stringResource(R.string.register_title_card),
+                        color = TextDark,
+                        fontSize = 24.sp,
                         fontWeight = FontWeight.SemiBold
                     )
 
@@ -133,67 +129,41 @@ fun RegisterView(
 
                     // Campo: nombre completo
                     NuckyTextField(
-                        value         = uiState.fullName,
+                        value = uiState.fullName,
                         onValueChange = viewModel::onFullNameChange,
-                        label         = stringResource(R.string.label_full_name),
-                        leadingIcon   = {
-                            Icon(
-                                Icons.Default.Person,
-                                contentDescription = null,
-                                tint = NavyBlue
-                            )
-                        }
+                        label = stringResource(R.string.label_full_name),
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Campo: cédula
                     NuckyTextField(
-                        value         = uiState.cedula,
+                        value = uiState.cedula,
                         onValueChange = viewModel::onCedulaChange,
-                        label         = stringResource(R.string.label_document_number),
-                        keyboardType  = KeyboardType.Number,
-                        leadingIcon   = {
-                            Icon(
-                                Icons.Default.Badge,
-                                contentDescription = null,
-                                tint = NavyBlue
-                            )
-                        }
+                        label = stringResource(R.string.label_document_number),
+                        keyboardType = KeyboardType.Number,
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Campo: contraseña
                     NuckyTextField(
-                        value         = uiState.password,
+                        value = uiState.password,
                         onValueChange = viewModel::onPasswordChange,
-                        label         = stringResource(R.string.label_password),
-                        isPassword    = true,
-                        leadingIcon   = {
-                            Icon(
-                                Icons.Default.Lock,
-                                contentDescription = null,
-                                tint = NavyBlue
-                            )
-                        }
+                        label = stringResource(R.string.label_password),
+                        isPassword = true
+
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     // Campo: confirmar contraseña
                     NuckyTextField(
-                        value         = uiState.confirmPassword,
+                        value = uiState.confirmPassword,
                         onValueChange = { viewModel.onConfirmPasswordChange(it) },
-                        label         = stringResource(R.string.label_confirm_password),
-                        isPassword    = true,
-                        leadingIcon   = {
-                            Icon(
-                                Icons.Default.Lock,
-                                contentDescription = null,
-                                tint = NavyBlue
-                            )
-                        }
+                        label = stringResource(R.string.label_confirm_password),
+                        isPassword = true
+
                     )
 
                     Spacer(modifier = Modifier.height(24.dp))
@@ -204,55 +174,52 @@ fun RegisterView(
                             viewModel.onRegisterClicked(
                                 onSuccess = {
                                     // Registro exitoso: muestra diálogo y luego va al login
-                                    message    = R.string.register_success_message
-                                    esExito    = true
+                                    message = R.string.register_success_message
+                                    esExito = true
                                     showDialog = true
                                 },
                                 onError = {
                                     // Hubo un error
-                                    message    = it
-                                    esExito    = false
+                                    message = it
+                                    esExito = false
                                     showDialog = true
                                 }
                             )
                         },
-                        enabled  = !uiState.isLoading,
+                        enabled = !uiState.isLoading,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(52.dp),
-                        shape  = RoundedCornerShape(12.dp),
+                        shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor         = Emerald,
+                            containerColor = Emerald,
                             disabledContainerColor = Emerald.copy(alpha = 0.5f)
                         )
                     ) {
 
                         if (uiState.isLoading) {
                             CircularProgressIndicator(
-                                color       = White,
-                                modifier    = Modifier.size(22.dp),
+                                color = White,
+                                modifier = Modifier.size(22.dp),
                                 strokeWidth = 2.dp
                             )
                         } else {
                             Text(
-                                text       = stringResource(R.string.btn_register),
-                                fontSize   = 16.sp,
+                                text = stringResource(R.string.btn_register),
+                                fontSize = 16.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                         }
                     }
-
                     Spacer(modifier = Modifier.height(16.dp))
-
-                    // Link para volver al login
                     Row(
-                        modifier              = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
-                        verticalAlignment     = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
 
                         Text(
-                            text  = stringResource(R.string.text_already_have_account),
+                            text = stringResource(R.string.text_already_have_account),
                             color = TextGray
                         )
 
@@ -260,8 +227,8 @@ fun RegisterView(
                             onClick = { navController.popBackStack() }
                         ) {
                             Text(
-                                text       = "Inicia sesión",
-                                color      = NavyBlue,
+                                text = stringResource(R.string.text_login_here),
+                                color = NavyBlue,
                                 fontWeight = FontWeight.Bold
                             )
                         }

@@ -30,7 +30,7 @@ import com.example.proyect.nucky_banck.ui.theme.White
 fun HistorialView(
     cedula: String,
     navController: NavController,
-    viewModel: HistorialViewModel = viewModel()
+    viewModel: MovementsViewModel = viewModel()
 ) {
 
     val movimientos by viewModel.movimientos.collectAsStateWithLifecycle()
@@ -70,23 +70,23 @@ fun HistorialView(
 
                 Column {
                     Text(
-                        text       = "Historial",
-                        color      = White,
-                        fontSize   = 22.sp,
+                        text = "Historial",
+                        color = White,
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text     = "Tus transferencias realizadas",
-                        color    = White.copy(alpha = 0.7f),
+                        text = "Tus transferencias realizadas",
+                        color = White.copy(alpha = 0.7f),
                         fontSize = 14.sp
                     )
                 }
             }
 
             Card(
-                modifier  = Modifier.fillMaxWidth().weight(1f),
-                shape     = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
-                colors    = CardDefaults.cardColors(containerColor = White),
+                modifier = Modifier.fillMaxWidth().weight(1f),
+                shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
+                colors = CardDefaults.cardColors(containerColor = White),
                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
             ) {
 
@@ -97,9 +97,9 @@ fun HistorialView(
                 ) {
 
                     Text(
-                        text       = "Movimientos",
-                        color      = TextDark,
-                        fontSize   = 20.sp,
+                        text = "Movimientos",
+                        color = TextDark,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold
                     )
 
@@ -107,8 +107,8 @@ fun HistorialView(
 
                     if (movimientos.isEmpty()) {
                         Text(
-                            text     = "No hay movimientos registrados",
-                            color    = TextGray,
+                            text = "No hay movimientos registrados",
+                            color = TextGray,
                             fontSize = 14.sp
                         )
                     } else {

@@ -17,7 +17,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
 
     NavHost(
-        navController    = navController,
+        navController = navController,
         startDestination = "login"
     ) {
 
@@ -30,9 +30,9 @@ fun AppNavigation() {
             val cedula = backStackEntry.arguments?.getString("cedula") ?: ""
             BackHandler(enabled = true) { }
             HomeView(
-                cedula        = cedula,
+                cedula = cedula,
                 navController = navController,
-                onLogout      = {
+                onLogout = {
                     navController.navigate("login") {
                         popUpTo(0) { inclusive = true }
                     }
@@ -47,7 +47,7 @@ fun AppNavigation() {
         composable("transfer/{cedula}") { backStackEntry ->
             val cedula = backStackEntry.arguments?.getString("cedula") ?: ""
             TransferView(
-                cedula        = cedula,
+                cedula = cedula,
                 navController = navController
             )
         }
@@ -55,7 +55,7 @@ fun AppNavigation() {
         composable("historial/{cedula}") { backStackEntry ->
             val cedula = backStackEntry.arguments?.getString("cedula") ?: ""
             HistorialView(
-                cedula        = cedula,
+                cedula = cedula,
                 navController = navController
             )
         }

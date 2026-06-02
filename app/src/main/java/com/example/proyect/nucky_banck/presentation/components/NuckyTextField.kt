@@ -28,17 +28,11 @@ import com.example.proyect.nucky_banck.ui.theme.TextGray
 fun NuckyTextField(
 
     value: String,
-
     onValueChange: (String) -> Unit,
-
     label: String,
-
     leadingIcon: @Composable (() -> Unit)? = null,
-
     errorMessage: String? = null,
-
     isPassword: Boolean = false,
-
     keyboardType: KeyboardType = KeyboardType.Text
 ) {
 

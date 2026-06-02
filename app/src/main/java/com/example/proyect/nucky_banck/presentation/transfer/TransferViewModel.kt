@@ -2,7 +2,9 @@ package com.example.proyect.nucky_banck.presentation.transfer
 
 import androidx.lifecycle.ViewModel
 import com.example.proyect.nucky_banck.data.repository.FirebaseAuthRepositoryImpl
+import com.example.proyect.nucky_banck.domain.model.Transfer
 import com.example.proyect.nucky_banck.domain.usecase.TransferUseCase
+import com.example.proyect.nucky_banck.domain.model.User
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,22 +12,21 @@ import kotlinx.coroutines.flow.update
 
 // Maneja la lógica de la pantalla de transferencia.
 // Sigue el mismo patrón del LoginViewModel y RegisterViewModel.
-class TransferViewModel(
-    private val transferUseCase: TransferUseCase = TransferUseCase(FirebaseAuthRepositoryImpl())
+class TransferViewModel(private val transferUseCase: TransferUseCase = TransferUseCase(FirebaseAuthRepositoryImpl())
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(TransferModel())
-    val uiState: StateFlow<TransferModel> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(Transfer())
+    val uiState: StateFlow<Transfer> = _uiState.asStateFlow()
 
     // Actualiza la cédula destino cuando el usuario escribe
     fun onCedulaDestinoChange(value: String) {
         _uiState.update {
             it.copy(
-                cedulaDestino     = value,
+                cedulaDestino = value,
                 cedulaDestinoError = null,
-                generalError      = null,
-                transferSuccess   = false,
-                successMessage    = ""
+                generalError = null,
+                transferSuccess = false,
+                successMessage = ""
             )
         }
     }
@@ -34,11 +35,11 @@ class TransferViewModel(
     fun onMontoChange(value: String) {
         _uiState.update {
             it.copy(
-                monto       = value,
-                montoError  = null,
+                monto = value,
+                montoError = null,
                 generalError = null,
                 transferSuccess = false,
-                successMessage  = ""
+                successMessage = ""
             )
         }
     }
@@ -57,22 +58,22 @@ class TransferViewModel(
         val state = _uiState.value
 
         val cedulaDestinoError = when {
-            state.cedulaDestino.isBlank()              -> "Ingresa la cédula del destinatario"
-            !state.cedulaDestino.all { it.isDigit() }  -> "La cédula solo debe contener números"
-            else                                       -> null
+            state.cedulaDestino.isBlank() -> "Ingresa la cédula del destinatario"
+            !state.cedulaDestino.all { it.isDigit() } -> "La cédula solo debe contener números"
+            else -> null
         }
 
         val montoError = when {
-            state.monto.isBlank()                -> "Ingresa el monto a transferir"
+            state.monto.isBlank() -> "Ingresa el monto a transferir"
             state.monto.toDoubleOrNull() == null -> "El monto debe ser un número válido"
-            state.monto.toDouble() <= 0          -> "El monto debe ser mayor a cero"
-            else                                 -> null
+            state.monto.toDouble() <= 0 -> "El monto debe ser mayor a cero"
+            else -> null
         }
 
         _uiState.update {
             it.copy(
                 cedulaDestinoError = cedulaDestinoError,
-                montoError         = montoError
+                montoError = montoError
             )
         }
 
@@ -89,25 +90,25 @@ class TransferViewModel(
         _uiState.update { it.copy(isLoading = true, generalError = null) }
 
         transferUseCase(
-            cedulaOrigen  = cedulaOrigen,
+            cedulaOrigen = cedulaOrigen,
             cedulaDestino = state.cedulaDestino,
-            monto         = state.monto.toDouble()
+            monto = state.monto.toDouble()
         ) { exito, mensaje ->
 
             if (exito) {
-                // Transferencia exitosa
+
                 _uiState.update {
                     it.copy(
-                        isLoading      = false,
+                        isLoading = false,
                         transferSuccess = true,
-                        successMessage  = mensaje
+                        successMessage = mensaje
                     )
                 }
             } else {
                 // Hubo un error
                 _uiState.update {
                     it.copy(
-                        isLoading    = false,
+                        isLoading = false,
                         generalError = mensaje
                     )
                 }
