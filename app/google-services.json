@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "178575808489",
+    "project_id": "nucky-banck",
+    "storage_bucket": "nucky-banck.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178575808489:android:25e5fdad4798de188e5d78",
+        "android_client_info": {
+          "package_name": "com.example.proyect.nucky_banck"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0r6YMPIsv3wf6TwMQjyEY1ETJoGNoR5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

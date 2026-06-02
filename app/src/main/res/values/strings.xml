@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Nucky Bank</string>
+
+    <!-- TEXTOS GENERALES -->
+    <string name="text_welcome">Bienvenido</string>
+    <string name="text_loading">Cargando...</string>
+
+    <!-- BOTONES -->
+    <string name="btn_accept">Aceptar</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_logout">Cerrar sesión</string>
+
+    <!-- LOGIN -->
+    <string name="label_document_number">Número de Cédula</string>
+    <string name="label_password">Contraseña</string>
+    <string name="btn_login">Iniciar Sesión</string>
+    <string name="text_no_account">¿No tienes cuenta?</string>
+    <string name="error_login_failed">Cédula o contraseña incorrecta</string>
+
+    <!-- REGISTER -->
+    <string name="register_title">Crear Cuenta</string>
+    <string name="label_full_name">Nombre Completo</string>
+    <string name="label_confirm_password">Confirmar Contraseña</string>
+    <string name="btn_register">Registrarse</string>
+    <string name="text_already_have_account">¿Ya tienes cuenta?</string>
+    <string name="dialog_success_title">Éxito</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="register_success_message">Cuenta creada correctamente</string>
+    <string name="error_register_failed">Hubo un error al crear la cuenta</string>
+    <string name="error_user_exists">Ya existe el usuario con esa cédula</string>
+
+    <!-- TRANSFER -->
+    <string name="transfer_title">Transferencia</string>
+    <string name="label_cedula_destino">Cédula del destinatario</string>
+    <string name="label_monto">Monto a transferir</string>
+    <string name="btn_transfer">Transferir</string>
+</resources>
